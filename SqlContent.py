@@ -13,6 +13,7 @@ def establish_database_connection():
         cursor = conn.cursor()
         return conn, cursor
     except Exception as e:
+        logging.error("Failed to establish a database connection:%s", str(e))
         print("Failed to establish a database connection:", str(e))
         return None, None
 
@@ -21,5 +22,6 @@ def execute_sql_query(cursor):
         cursor.execute(sql_query)
         return cursor.fetchall()
     except Exception as e:
+        logging.error("An error occurred while executing the SQL query:%s", str(e))
         print("An error occurred while executing the SQL query:", str(e))
         return []
